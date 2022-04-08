@@ -1,25 +1,23 @@
-import logo from './logo.svg';
 import './App.css';
+import Layout from './Components/Layout';
+import Questionnaire from './Components/Questionnaire';
+import Tests from './Components/Tests';
+import ViewAndSessionContextProvider, { ViewAndSessionContext } from './Contexts/ViewAndSessionContext';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	return (
+		<ViewAndSessionContextProvider>
+			<ViewAndSessionContext.Consumer>
+				{({ view, session }) => (
+					<Layout view={view} session={session}>
+						{view === 'tests' && <Tests />}
+						{view === 'pre-questionnaire' && <Questionnaire type='Pre' />}
+						{view === 'post-questionnaire' && <Questionnaire type='Post' />}
+					</Layout>
+				)}
+			</ViewAndSessionContext.Consumer>
+		</ViewAndSessionContextProvider>
+	);
 }
 
 export default App;

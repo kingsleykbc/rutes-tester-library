@@ -1,0 +1,37 @@
+.AccountInfo .topSection {
+	display: flex;
+	align-items: center;
+	gap: 15px;
+}
+
+.AccountInfo .icon {
+	border: 2px solid rgb(175, 175, 175);
+	border-radius: 5px;
+	width: 40px;
+	height: 40px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.AccountInfo .progressBar {
+	margin: 20px 0 10px 0;
+	position: relative;
+	height: 5px;
+	border-radius: 3px;
+	background: #e1e1e1;
+	overflow: hidden;
+}
+
+.AccountInfo .progressBar div {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	background-color: var(--primaryColor);
+}
+
+.AccountInfo .progressSection p {
+	color: var(--lightText);
+	font-size: 0.95rem;
+}

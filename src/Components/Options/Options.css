@@ -1,0 +1,18 @@
+.Option {
+	display: flex;
+	gap: 15px;
+	align-items: center;
+	border-top: var(--border);
+	padding: 15px 0;
+  cursor: pointer;
+}
+
+.Option:hover {
+  opacity: 0.5;
+}
+
+.Option svg {
+	font-size: 1.2rem;
+  margin-bottom: -5px;
+  color: var(--primaryColor);
+}

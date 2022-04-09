@@ -1,0 +1,10 @@
+.Tests .Instruction {
+  margin: 5px 2px;
+}
+
+.Tests .topSection {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}

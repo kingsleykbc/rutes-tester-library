@@ -1,4 +1,5 @@
 import React, { Component, createContext, useContext } from 'react';
+import { session } from '../dummybase';
 
 export const ViewAndSessionContext = createContext(null);
 
@@ -11,6 +12,7 @@ class ViewAndSessionContextProvider extends Component {
 
 	componentDidMount() {
 		// GET SESSION HERE
+		this.setState({ session: session });
 	}
 
 	// =======================================================================

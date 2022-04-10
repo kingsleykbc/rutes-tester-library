@@ -3,11 +3,7 @@ import { FaRegUser as IcUser } from 'react-icons/fa';
 import './AccountInfo.css';
 import { useViewAndSession } from '../../Contexts/ViewAndSessionContext';
 
-const AccountInfo = () => {
-	const {
-		session: { testerEmail, project, progress }
-	} = useViewAndSession();
-
+const AccountInfo = ({ session: { testerEmail, project, progress }, device }) => {
 	return (
 		<div className='AccountInfo'>
 			<div className='topSection'>
@@ -18,8 +14,9 @@ const AccountInfo = () => {
 
 				{/* DETAILS */}
 				<div className='details'>
-					<h3>{testerEmail}</h3>
+					<h4>{testerEmail}</h4>
 					<p className='lightText'>{project.title}</p>
+					<p className='lightText'>{device || 'Undetected device'} screen</p>
 				</div>
 			</div>
 

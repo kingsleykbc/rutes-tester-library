@@ -1,0 +1,29 @@
+.Expandable {
+	border-bottom: 1px solid #cfcfcf;
+}
+
+.Expandable .heading {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	padding: 15px 0;
+	cursor: pointer;
+}
+
+.Expandable .heading:hover {
+  opacity: 0.6;
+}
+
+.Expandable .expandable-icon {
+	font-size: 1.3rem;
+	margin-bottom: -5px;
+	color: var(--primaryColor);
+}
+
+.Expandable .content {
+	padding-bottom: 15px;
+  padding-left: 32px;
+}
+.Expandable .details {
+	flex-grow: 1;
+}

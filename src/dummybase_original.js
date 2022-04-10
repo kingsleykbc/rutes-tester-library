@@ -4,7 +4,6 @@ export const session = {
 	project: {
 		title: 'The sample website',
 		description: 'An e-parking solution for handling automatic parking lot allocation',
-		screenshots: {},
 		tests: [
 			{
 				route: '/',

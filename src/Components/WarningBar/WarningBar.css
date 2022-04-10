@@ -1,0 +1,21 @@
+.Rutes .WarningBar {
+	position: fixed;
+	top: 20px;
+	left: 50%;
+	transform: translate(-50%);
+	background: var(--primaryColor);
+	padding: 15px 20px;
+	border-radius: 5px;
+	box-shadow: var(--boxShadow);
+	color: #fff;
+	display: flex;
+	align-items: center;
+	gap: 15px;
+	font-size: 0.95rem;
+	width: 90%;
+	max-width: 600px;
+}
+
+.Rutes .WarningBar .icon {
+	font-size: 1.5rem;
+}

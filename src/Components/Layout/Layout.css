@@ -1,16 +1,30 @@
-.Layout aside {
+.layout-aside {
 	position: fixed;
-	background: #fff;
 	top: 0;
 	left: 0;
+	bottom: 0;
+	display: flex;
+}
+
+.layout-aside .iconButton {
+	margin: 15px 20px;
+}
+
+.layout-aside.hide .layout-content {
+	margin-left: -300px;
+}
+
+.layout-content {
+	height: 100%;
+	background: #fff;
 	width: 300px;
 	padding: 15px;
-	height: 100vh;
 	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.13);
 	display: flex;
 	flex-direction: column;
 	gap: 15px;
 	z-index: 200;
+	transition: margin ease-out 0.15s;
 	overflow: auto;
 }
 

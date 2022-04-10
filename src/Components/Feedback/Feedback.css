@@ -1,0 +1,10 @@
+.Feedback {
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+}
+
+.Feedback .feedbackList {
+	flex-grow: 1;
+	overflow: auto;
+}

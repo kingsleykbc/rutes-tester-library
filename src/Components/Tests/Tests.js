@@ -1,22 +1,29 @@
-import { useState } from 'react';
 import './Tests.css';
 import { useViewAndSession } from '../../Contexts/ViewAndSessionContext';
-import AllTests from '../TestsComponents/AllTests/AllTests';
-import SubLayout from '../SubLayout/SubLayout';
 
 const Tests = () => {
 	const {
+		setSubView,
 		session: {
-			project: { tests }
+			project: { tests },
+			response
 		}
 	} = useViewAndSession();
 
-	// Toggle
-	const [showLB, setShowLB] = useState(false);
-	const toggleLB = () => setShowLB(!showLB);
+	// Get the current and next route
+	const routeIndex = tests.findIndex(item => item.route === window.location.pathname);
+	const test = tests[routeIndex];
+	const nextTest = tests[routeIndex + 1];
 
-	// Get the route
-	const test = tests.find(item => item.route === window.location.pathname);
+	// If test is done
+	const isDone = response.completedTests.includes(test.route);
+
+	/**
+	 * MARK TEST AS COMPLETE
+	 */
+	const completeTest = () => {
+		// Handle completion and refresh here
+	};
 
 	// ===================================================================================================================
 	//  UI
@@ -25,7 +32,7 @@ const Tests = () => {
 		<div className='Tests'>
 			<div className='topSection'>
 				<h4>Test</h4>
-				<div className='textButton' onClick={toggleLB}>
+				<div className='textButton' onClick={() => setSubView('All tests')}>
 					All steps
 				</div>
 			</div>
@@ -33,16 +40,20 @@ const Tests = () => {
 			{!test?.instructions?.length > 0 ? (
 				<div className='placeholder'>No tests specified for this route, try another page</div>
 			) : (
-				<div>
+				<div className='tests-instructions'>
 					{test.instructions.map((item, index) => (
 						<Instruction key={item + index}>{item}</Instruction>
 					))}
+					<div className='options'>
+						{!isDone ? <button onClick={completeTest}>Mark as done</button> : <div className='highlight'>Completed</div>}
+						{nextTest && (
+							<a href={nextTest.fullRoute}>
+								<button>Next Step</button>
+							</a>
+						)}
+					</div>
 				</div>
 			)}
-
-			<SubLayout title='All tests' show={showLB} toggle={toggleLB}>
-				<AllTests />
-			</SubLayout>
 		</div>
 	);
 };

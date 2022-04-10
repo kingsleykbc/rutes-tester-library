@@ -1,0 +1,10 @@
+.Questionnaire {
+	margin: 3px;
+}
+.Questionnaire .lightText {
+	margin: 10px 0 20px 0;
+}
+
+.questionnaire-button {
+	width: 100%;
+}

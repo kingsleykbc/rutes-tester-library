@@ -1,0 +1,16 @@
+.AddFeedback input,
+.AddFeedback select,
+.AddFeedback textarea {
+	padding: 10px;
+	width: 100%;
+	margin-bottom: 10px;
+	font-size: 0.9rem;
+  resize: none;
+}
+.AddFeedback button {
+	width: 100%;
+}
+
+.AddFeedback button:hover {
+	transform: scale(1);
+}

@@ -1,0 +1,37 @@
+.Rutes .Menu {
+	position: absolute;
+	width: 250px;
+	height: 250px;
+	background: #fff;
+	box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
+	border-radius: 5px;
+	z-index: 100;
+	padding: 12px;
+}
+
+.Rutes .Menu .textareaSection {
+	border-top: var(--border);
+	border-bottom: var(--border);
+	margin: 10px 0;
+	padding: 10px 0;
+}
+
+.Rutes .AnnotationMenu_target {
+	border-top: var(--border);
+	padding-top: 10px;
+	font-size: 0.9rem;
+	margin-top: 10px;
+
+}
+
+#AnnotationMenu_button {
+	width: 100%;
+}
+
+#AnnotationMenu_input {
+	width: 100%;
+	resize: none;
+	font-size: 0.9rem;
+	height: 80px;
+	padding: 5px;
+}

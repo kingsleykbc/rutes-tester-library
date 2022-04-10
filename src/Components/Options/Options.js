@@ -2,17 +2,21 @@ import React from 'react';
 import './Options.css';
 import { BsChatRight as IcChat } from 'react-icons/bs';
 import { BsReplyAllFill as IcFeedback } from 'react-icons/bs';
+import { useViewAndSession } from '../../Contexts/ViewAndSessionContext';
 
-const Feedback = () => {
+const Options = () => {
+	const { setSubView } = useViewAndSession();
 	return (
-		<div className='Feedback'>
+		<div className='Options'>
 			<Option icon={<IcChat />}>Chat</Option>
-			<Option icon={<IcFeedback />}>Feedback</Option>
+			<Option onClick={() => setSubView('Feedback')} icon={<IcFeedback />}>
+				Feedback
+			</Option>
 		</div>
 	);
 };
 
-export default Feedback;
+export default Options;
 
 const Option = ({ icon, onClick, children }) => {
 	return (

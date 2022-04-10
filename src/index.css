@@ -8,7 +8,7 @@
 	--lightText: #747474;
 }
 
-* {
+.Rutes * {
 	padding: 0;
 	margin: 0;
 	font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
@@ -16,23 +16,23 @@
 	box-sizing: border-box;
 }
 
-a {
+.Rutes a {
 	color: inherit;
 	text-decoration: none;
 }
 
-* {
+.Rutes * {
 	box-sizing: border-box;
 }
 
-input,
-button {
+.Rutes input,
+.Rutes button {
 	font-size: 1rem;
 }
 
-input,
-select,
-textarea {
+.Rutes input,
+.Rutes select,
+.Rutes textarea {
 	display: block;
 	border: 2px solid #d8d8d8;
 	background: none;
@@ -41,14 +41,14 @@ textarea {
 	font-size: 1rem;
 }
 
-.whiteboard {
+.Rutes .whiteboard {
 	box-shadow: var(--boxShadow);
 	padding: 12px;
 	border-radius: 5px;
 	background: #fff;
 }
 
-body {
+.Rutes body {
 	margin: 0;
 	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
 		'Helvetica Neue', sans-serif;
@@ -56,15 +56,11 @@ body {
 	-moz-osx-font-smoothing: grayscale;
 }
 
-code {
-	font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
-}
-
-.lightText {
+.Rutes .lightText {
 	color: var(--lightText);
 }
 
-button {
+.Rutes button {
 	border: 2px solid var(--primaryColor);
 	padding: 8px 12px;
 	border-radius: 5px;
@@ -75,16 +71,16 @@ button {
 	transition: transform linear 0.1s;
 }
 
-button:hover {
-	transform: scale(1.1);
+.Rutes button:hover {
+	transform: scale(1.05);
 }
 
-button.filled {
+.Rutes button.filled {
 	background: var(--primaryColor);
 	color: #fff;
 }
 
-.placeholder {
+.Rutes .placeholder {
 	border: 2px dashed var(--borderColor);
 	border-radius: 5px;
 	padding: 10px;
@@ -92,9 +88,41 @@ button.filled {
 	color: var(--lightText);
 }
 
-.textButton {
+.Rutes .textButton {
 	color: var(--primaryColor);
 	font-weight: bold;
 	text-decoration: underline;
 	cursor: pointer;
+}
+
+.Rutes .iconButton {
+	width: 40px;
+	height: 40px;
+	border-radius: 5px;
+	border: 2px solid var(--primaryColor);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 1.7rem;
+	cursor: pointer;
+	color: var(--primaryColor);
+}
+
+.Rutes .iconButton span {
+	margin-top: -5px;
+	font-weight: bold;
+}
+
+.Rutes .iconButton.filled {
+	background: var(--primaryColor);
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+	color: #fff;
+}
+
+.Rutes .highlight {
+	padding: 10px 15px;
+	background-color: var(--highlightColor);
+	font-weight: bold;
+	border-radius: 5px;
+	color: var(--lightText);
 }

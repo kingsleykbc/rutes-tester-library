@@ -1,0 +1,22 @@
+.AllTests .Heading {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+.AllTests .Heading .icon {
+	color: #898989;
+}
+.AllTests .Heading .icon.done {
+	color: var(--primaryColor);
+	font-size: 1.13rem;
+	margin-bottom: -3px;
+}
+.AllTests .HiddenContent a {
+	display: block;
+	margin-bottom: 20px;
+}
+
+.AllTests .HiddenContent li {
+	margin-top: 10px;
+  margin-left: 20px;
+}

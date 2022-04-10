@@ -8,3 +8,16 @@
   justify-content: space-between;
   margin-bottom: 20px;
 }
+
+.tests-instructions .options {
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ gap: 10px;
+ margin-top: 15px;
+}
+
+.tests-instructions button {
+  padding: 8px 9px;
+  font-size: 0.9rem;
+}

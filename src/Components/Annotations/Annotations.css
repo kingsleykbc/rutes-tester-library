@@ -1,0 +1,47 @@
+.Rutes .Annotation {
+	position: absolute;
+	z-index: 1000;
+	cursor: pointer;
+}
+.Rutes .annotation_dot {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 25px;
+	height: 25px;
+	z-index: 200;
+	border-radius: 20px;
+	background: #fff;
+	box-shadow: var(--boxShadow);
+	border: 7px solid var(--primaryColor);
+}
+
+.Rutes .annotation_details {
+	position: absolute;
+	top: 15px;
+	left: 15px;
+	background: #fff;
+	box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
+	padding: 10px;
+	font-size: 0.9rem;
+	display: none;
+	width: 180px;
+	border-radius: 5px;
+}
+
+.Rutes .annotation_details p {
+	margin: 10px 0;
+	padding: 10px 0;
+	border-top: var(--border);
+	border-bottom: var(--border);
+}
+
+.Rutes .annotation_details span {
+	font-weight: bold;
+	color: var(--lightText);
+	font-size: 0.83rem;
+}
+
+.Rutes .Annotation:hover .annotation_details {
+	display: block;
+}

@@ -38,6 +38,7 @@ export const session = {
 		]
 	},
 	response: {
+		annotations: [],
 		feedback: [
 			{
 				id: '1',
@@ -59,16 +60,7 @@ export const session = {
 			}
 		],
 		completedTests: ['/'],
-		annotations: [
-			{
-				route: '/',
-				point: { mouseX: 200, mouseY: 399 },
-				message: 'This is the first message',
-				timePosted: new Date(),
-				testerName: 'John frank',
-				sessionID: '#378463'
-			}
-		],
+
 		preQuestionnaireResponse: [
 			{ questionID: '34252323', answer: 'It is difficult to navigate' },
 			{ questionID: 'IG35G873', answer: 'rarely' }

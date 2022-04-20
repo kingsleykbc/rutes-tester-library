@@ -3,14 +3,17 @@ import { useViewAndSession } from '../../../Contexts/ViewAndSessionContext';
 import './Questions.css';
 import { FaRegQuestionCircle as IcQuestion } from 'react-icons/fa';
 
-const Questions = ({ type }) => {
+const Questions = ({ type, toggle }) => {
 	const {
-		session: { project, response }
+		session: { project, response },
+		updateData
 	} = useViewAndSession();
 
 	const questions = type === 'Pre' ? project.preQuestionnaire : project.postQuestionnaire;
 	const defaultAnswers = type === 'Pre' ? response.preQuestionnaireResponse : response.postQuestionnaireResponse;
 	const [answers, setAnswers] = useState(defaultAnswers || []);
+	const [isLoading, setIsLoading] = useState(false);
+	const [error, setError] = useState('');
 
 	/**
 	 * ON CHANGE RESPONSE
@@ -30,8 +33,17 @@ const Questions = ({ type }) => {
 	/**
 	 * SUBMIT QUESTIONNAIRE
 	 */
-	const submitQuestionnaire = e => {
+	const submitQuestionnaire = async e => {
 		e.preventDefault();
+		setIsLoading(true);
+		setError('');
+		try {
+			await updateData('ADD_QUESTIONNAIRE_RESPONSE', { type, answers });
+			toggle();
+		} catch (e) {
+			setError(e.message);
+		}
+		setIsLoading(false);
 	};
 
 	// ===================================================================================================================
@@ -47,7 +59,10 @@ const Questions = ({ type }) => {
 						const answerIndex = answers.findIndex(val => val.questionID === item.id);
 						return <Question key={`qq_${item.id}`} data={item} answer={answers[answerIndex]?.answer || ''} onChange={onChange} />;
 					})}
-					<button>Submit Questionnaire</button>
+					<button disabled={isLoading} className='filled'>
+						{isLoading ? 'Submitting...' : 'Submit Questionnaire'}
+					</button>
+					<div className='aCenter'>{error && <h5>{error}</h5>}</div>
 				</form>
 			</div>
 		</div>

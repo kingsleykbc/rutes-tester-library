@@ -1,3 +1,4 @@
+export const SERVER_URI = 'http://localhost:8080/graphql';
 export const DEVICE_SCREENS = {
 	laptop: {
 		width: 1920,

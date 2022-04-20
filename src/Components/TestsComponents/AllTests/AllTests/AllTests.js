@@ -16,7 +16,7 @@ const AllTests = ({
 	// ===================================================================================================================
 	return (
 		<div className='AllTests'>
-			{preQuestionnaire && (
+			{preQuestionnaire.length !== 0 && (
 				<Expandable
 					defaultOpen={true}
 					heading={
@@ -41,7 +41,7 @@ const AllTests = ({
 				/>
 			))}
 
-			{postQuestionnaire && (
+			{postQuestionnaire.length !== 0 && (
 				<Expandable
 					defaultOpen={true}
 					heading={
@@ -67,7 +67,7 @@ const Heading = ({ done, children, isBold }) => {
 	);
 };
 
-const HiddenContent = ({ data, data: { route, fullRoute, instructions } }) => {
+const HiddenContent = ({ data, data: { fullRoute, instructions } }) => {
 	// NOTE: fullRoute =  window.location.protocol + '//' + window.location.host + route
 	return (
 		<div className='HiddenContent'>

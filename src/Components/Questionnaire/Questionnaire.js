@@ -19,7 +19,7 @@ const Questionnaire = ({ type }) => {
 			</button>
 
 			<LightBox show={showLB} toggle={toggleLB}>
-				<Questions type={type} />
+				<Questions type={type} toggle={toggleLB} />
 			</LightBox>
 		</div>
 	);

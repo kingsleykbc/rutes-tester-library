@@ -17,7 +17,15 @@
 	font-size: 0.85rem;
 }
 
-.FeedbackItem .title {
-	display: inline-block;
+.FeedbackItem .topSection {
+	display: flex;
+	justify-content: space-between;
 	margin-bottom: 10px;
+}
+
+.FeedbackItem .del {
+	font-weight: bold;
+	color: var(--primaryColor);
+	font-size: 1.1rem;
+	cursor: pointer;
 }

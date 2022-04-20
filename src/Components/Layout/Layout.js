@@ -11,10 +11,10 @@ import Menu from '../Menu/Menu';
 import useRightClickMenu from '../../hooks/useRightClickMenu';
 import useWindowSize from '../../hooks/useWindowSize';
 import WarningBar from '../WarningBar/WarningBar';
-import { DEVICE_SCREENS } from '../../config';
+import { DEVICE_SCREENS } from '../../lib/config';
 import Annotations from '../Annotations/Annotations';
 
-const Layout = ({ children, view, subView, session, updateSession }) => {
+const Layout = ({ children, view, subView, session, updateSession, logout }) => {
 	const [show, setShow] = useState(true);
 	const [device, setDevice] = useState('loading..');
 	const toggle = () => setShow(!show);
@@ -22,7 +22,7 @@ const Layout = ({ children, view, subView, session, updateSession }) => {
 	const { width, height } = useWindowSize();
 
 	/**
-	 * TAKE SCREENSHOT OF PAGE IN THIS RESOLUTION (IF NONE ALREADY EXISTS)
+	 * GET THE DEVICE FROM WINDOW WIDTH
 	 */
 	useEffect(() => {
 		/**
@@ -75,12 +75,9 @@ const Layout = ({ children, view, subView, session, updateSession }) => {
 			<aside className={show && !showMenu ? 'layout-aside' : 'layout-aside hide'}>
 				<div className='layout-content'>
 					<AccountInfo session={session} device={device} />
-					<main>
-						{/* <pre>{JSON.stringify({ screenshots: session.project.screenshots, annotations: session.response.annotations }, null, 2)}</pre> */}
-						{children}
-					</main>
+					<main>{children}</main>
 					{!view.includes('questionnaire') && <Options />}
-					<ExitButton />
+					<ExitButton logout={logout} />
 				</div>
 
 				{subView && (
@@ -106,6 +103,6 @@ const Layout = ({ children, view, subView, session, updateSession }) => {
 
 export default Layout;
 
-const ExitButton = () => {
-	return <button>Exit test</button>;
+const ExitButton = ({ logout }) => {
+	return <button onClick={logout}>Exit test</button>;
 };

@@ -80,6 +80,11 @@
 	color: #fff;
 }
 
+.Rutes button:disabled {
+	background: #ffb0bd;
+	border: none;
+}
+
 .Rutes .placeholder {
 	border: 2px dashed var(--borderColor);
 	border-radius: 5px;
@@ -125,4 +130,17 @@
 	font-weight: bold;
 	border-radius: 5px;
 	color: var(--lightText);
+}
+
+.Rutes h5 {
+	display: inline-block;
+	color: #eb3f5b;
+	border-radius: 5px;
+	padding: 8px 12px;
+	background-color: #ffd0d7;
+	margin: 10px;
+}
+
+.Rutes .aCenter {
+	text-align: center;
 }

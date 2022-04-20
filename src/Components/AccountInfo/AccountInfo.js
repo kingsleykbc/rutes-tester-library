@@ -1,7 +1,6 @@
 import React from 'react';
 import { FaRegUser as IcUser } from 'react-icons/fa';
 import './AccountInfo.css';
-import { useViewAndSession } from '../../Contexts/ViewAndSessionContext';
 
 const AccountInfo = ({ session: { testerEmail, project, progress }, device }) => {
 	return (
@@ -25,7 +24,7 @@ const AccountInfo = ({ session: { testerEmail, project, progress }, device }) =>
 				<div className='progressBar'>
 					<div style={{ width: progress + '%' }}></div>
 				</div>
-				<p>Progress: {progress}%</p>
+				<p>Progress: {progress.toFixed(0)}%</p>
 			</div>
 		</div>
 	);

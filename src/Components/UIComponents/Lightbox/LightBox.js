@@ -2,10 +2,10 @@ import React from 'react';
 import Portal from '../Portal';
 import './Lightbox.css';
 
-const LightBox = ({ show, toggle, children }) => {
+const LightBox = ({ show, toggle, children, className }) => {
 	return (
 		<Portal selector='#portal'>
-			<div className={`Lightbox ${show ? 'show' : 'hide'}`}>
+			<div className={`Lightbox ${show ? 'show' : 'hide'} ${className}`}>
 				<div className='box'>
 					<div className='iconButton lightbox-close' onClick={toggle}>
 						<span>&times;</span>

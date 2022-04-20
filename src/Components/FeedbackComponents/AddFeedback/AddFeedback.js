@@ -4,16 +4,32 @@ import './AddFeedback.css';
 /**
  * FORM TO ADD NEW FEEDBACK
  */
-const AddFeedback = () => {
+const AddFeedback = ({ updateData }) => {
 	const [type, setType] = useState('');
 	const [title, setTitle] = useState('');
 	const [message, setMessage] = useState('');
+	const [loading, setLoading] = useState(false);
+	const [error, setError] = useState('');
 
 	/**
 	 * HANDLE POSTING FEEDBACK
 	 */
-	const postFeedback = e => {
+	const postFeedback = async e => {
 		e.preventDefault();
+		setLoading(true);
+		setError('');
+		try {
+			await updateData('FEEDBACK', { type, title, message });
+		} catch (e) {
+			console.log(e.networkError.result.errors);
+			setError(e.message);
+		}
+		setLoading(false);
+
+		// Reset fields
+		setType('');
+		setTitle('');
+		setMessage('');
 	};
 
 	// ===================================================================================================================
@@ -35,9 +51,12 @@ const AddFeedback = () => {
 			<input type='text' value={title} onChange={e => setTitle(e.target.value)} placeholder='Title' required />
 
 			{/* ACTUAL FEEDBACK */}
-			<textarea required value={message} onChange={e => setMessage(e.target.value)} placeholder='Describe note'></textarea>
+			<textarea value={message} onChange={e => setMessage(e.target.value)} placeholder='Describe note' required />
+
 			{/* SUBMIT BUTTON */}
-			<button>Add feedback</button>
+			<button disabled={loading}>{loading ? 'Adding...' : 'Add feedback'}</button>
+
+			{error && <h5>{error}</h5>}
 		</form>
 	);
 };

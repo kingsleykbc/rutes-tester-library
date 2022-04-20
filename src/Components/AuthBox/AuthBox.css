@@ -1,0 +1,40 @@
+.rutes-auth-box .box {
+	height: auto;
+	max-width: 400px;
+	min-height: 200px;
+}
+
+.rutes-auth-box.show .box {
+	animation: none;
+}
+
+.rutes-auth-box.hide .box {
+	animation: none;
+}
+
+.rutes-status,
+.rutes-auth-box form {
+	height: 300px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	padding: 0 30px;
+	padding-bottom: 30px;
+	text-align: center;
+}
+
+.rutes-auth-box form {
+	height: auto;
+	padding: 30px;
+}
+
+.rutes-auth-box form input {
+	margin: 15px auto;
+	width: 100%;
+	text-align: center;
+}
+
+.rutes-status h3 {
+	padding: 20px 0 15px 0;
+}

@@ -13,7 +13,10 @@
 }
 .AllTests .HiddenContent a {
 	display: block;
+	margin-top: 10px;
 	margin-bottom: 20px;
+	font-size: 0.93rem;
+	word-wrap: break-word;
 }
 
 .AllTests .HiddenContent li {

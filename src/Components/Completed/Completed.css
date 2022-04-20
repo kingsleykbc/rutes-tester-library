@@ -1,0 +1,12 @@
+.Rutes .Completed {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.Rutes .Completed h3 {
+  margin: 10px 0;
+}
+
+.Rutes .Completed p {
+  font-size: 0.95rem;
+}

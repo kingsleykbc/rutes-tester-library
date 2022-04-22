@@ -3,7 +3,9 @@ import React, { Component, createContext, useContext } from 'react';
 import apolloClient from '../lib/apollo';
 import {
 	getSessionQuery,
+	updateAnnotations,
 	updateCompletedTests,
+	updateProjectScreenshot,
 	updateQuestionnaireResponse,
 	updateSessionAction,
 	updateSessionFeedback
@@ -133,6 +135,28 @@ class ViewAndSessionContextProvider extends Component {
 					});
 					break;
 
+				// Add screenshot
+				case 'ADD_SCREENSHOT':
+					update = await apolloClient.mutate({
+						mutation: updateProjectScreenshot,
+						variables: { projectKey, screenshot: data }
+					});
+					break;
+
+				// Add annotation
+				case 'ADD_ANNOTATION':
+					update = await apolloClient.mutate({
+						mutation: updateAnnotations,
+						variables: { id, annotationData: data }
+					});
+					break;
+				// Delete feedback
+				case 'ANNOTATION_DELETE':
+					update = await apolloClient.mutate({
+						mutation: updateAnnotations,
+						variables: { id, annotationID: data }
+					});
+					break;
 				// Update other things
 				default:
 					delete data.__typename;
@@ -143,7 +167,7 @@ class ViewAndSessionContextProvider extends Component {
 			}
 
 			// Refresh state
-			await this.getData(update.data.session);
+			await this.getData(type === 'ADD_SCREENSHOT' ? null : update.data.session);
 		} catch (e) {
 			console.log(e.networkError.result.errors);
 			throw e.message;

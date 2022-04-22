@@ -1,10 +1,13 @@
 import { useEffect, useState } from 'react';
+import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import './Menu.css';
 import html2canvas from 'html2canvas';
+import { storage } from '../../lib/firebase';
 
-const Menu = ({ xpos, ypos, device, session, updateSession, toggleMenu, e, mouseX, mouseY }) => {
+const Menu = ({ xpos, ypos, device, session, updateData, toggleMenu, e, mouseX, mouseY }) => {
 	const [message, setMessage] = useState('');
-	const path = window.location.pathname;
+	const [isLoading, setIsLoading] = useState(false);
+	const route = window.location.pathname;
 
 	/**
 	 * ADD OUTLINE TO THE TARGET ELEMENT ON ANNOTATION OPEN
@@ -21,51 +24,66 @@ const Menu = ({ xpos, ypos, device, session, updateSession, toggleMenu, e, mouse
 	 */
 	const addAnnotation = async event => {
 		event.preventDefault();
-		if (!device) {
-			alert('This is viewport is unsupported. Resize browser or use another device');
-			return;
+		setIsLoading(true);
+		try {
+			// Verify device width
+			if (!device) {
+				alert('This is viewport is unsupported. Resize browser or use another device');
+				return;
+			}
+
+			// Prevent annotation form from showing in the screenshot
+			toggleMenu();
+			document.querySelector('#AnnotationMenu').style.display = 'none';
+
+			// If no screenshot taken, take screenshot and update the session
+			if (!includesDeviceScreenshot()) await takeAndStoreScreenShot();
+
+			// Store point
+			const newAnnotation = {
+				device,
+				route,
+				point: { mouseX, mouseY },
+				message,
+				element: {
+					tag: e.target.tagName,
+					id: e.target.id,
+					className: e.target.className
+				}
+			};
+			await updateData('ADD_ANNOTATION', newAnnotation);
+		} catch (e) {
+			console.log(e);
 		}
+		setIsLoading(false);
+	};
 
-		toggleMenu();
+	/**
+	 * TAKE AND STORE SCREENSHOT
+	 */
+	const takeAndStoreScreenShot = async () => {
+		// Capture entire page to canvas
+		const canvas = await html2canvas(document.querySelector('body'));
+		canvas.toBlob(async blob => {
+			// Store in firebase
+			const storageRef = ref(storage, `screenshots/screenshot_${device}_${new Date().getTime()}.jpg`);
+			await uploadBytes(storageRef, blob);
+			const screenshot = await getDownloadURL(storageRef);
 
-		// Prevent annotation form from showing in the screenshot
-		document.querySelector('#AnnotationMenu').style.display = 'none';
+			// Store in database
+			await updateData('ADD_SCREENSHOT', { device, route, screenshot });
+		}, 'image/png');
+	};
 
-		// If no screenshot taken, take screenshot and update the session
-		if (!session.project.screenshots[path]?.[device]) {
-			const canvas = await html2canvas(document.querySelector('body'));
+	/**
+	 * SEE IF DEVICE SCREENSHOT EXISTS
+	 */
+	const includesDeviceScreenshot = () => {
+		const { screenshots } = session.project;
+		const length = screenshots?.length || 0;
 
-			canvas.toBlob(blob => {
-				// Update session
-				const imageData = new FormData();
-				imageData.append('screen_shot', blob, device + '.png');
-
-				// Replace this bottom with storing the image on Firebase, saving the URL to the DB, and updating the session with the URL
-				const newSession = session;
-				if (!session.project.screenshots[path]) session.project.screenshots[path] = {};
-				newSession.project.screenshots[path][device] = URL.createObjectURL(blob);
-				updateSession(newSession);
-			}, 'image/png');
-		}
-
-		// Store point
-		const newAnnotation = {
-			route: window.location.pathname,
-			point: { mouseX, mouseY },
-			element: {
-				tag: e.target.tagName,
-				id: e.target.id,
-				className: e.target.className
-			},
-			message,
-			timePosted: new Date(),
-			device,
-			testerName: '--enter tester name---',
-			sessionID: '--sessionID--'
-		};
-		const newSession = session;
-		newSession.response.annotations.push(newAnnotation);
-		updateSession(newSession);
+		for (let i = 0; i < length; i++) if (screenshots[i].device === device && screenshots[i].route === route) return true;
+		return false;
 	};
 
 	// ===================================================================================================================
@@ -87,7 +105,9 @@ const Menu = ({ xpos, ypos, device, session, updateSession, toggleMenu, e, mouse
 						onChange={e => setMessage(e.target.value)}
 					/>
 				</div>
-				<button id='AnnotationMenu_button'>Post annotation</button>
+				<button disabled={isLoading} id='AnnotationMenu_button'>
+					{isLoading ? 'Loading...' : 'Post annotation'}
+				</button>
 			</form>
 		</div>
 	);

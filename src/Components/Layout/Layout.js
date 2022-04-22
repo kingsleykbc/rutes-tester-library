@@ -13,8 +13,9 @@ import useWindowSize from '../../hooks/useWindowSize';
 import WarningBar from '../WarningBar/WarningBar';
 import { DEVICE_SCREENS } from '../../lib/config';
 import Annotations from '../Annotations/Annotations';
+import Chat from '../Chat/Chat';
 
-const Layout = ({ children, view, subView, session, updateSession, logout }) => {
+const Layout = ({ children, view, subView, session, updateData, logout }) => {
 	const [show, setShow] = useState(true);
 	const [device, setDevice] = useState('loading..');
 	const toggle = () => setShow(!show);
@@ -63,7 +64,7 @@ const Layout = ({ children, view, subView, session, updateSession, logout }) => 
 					e={event}
 					device={device}
 					session={session}
-					updateSession={updateSession}
+					updateData={updateData}
 					toggleMenu={toggleMenu}
 				/>
 			)}
@@ -86,6 +87,7 @@ const Layout = ({ children, view, subView, session, updateSession, logout }) => 
 							{/* SET THE SUB VIEW */}
 							{subView === 'All tests' && <AllTests session={session} />}
 							{subView === 'Feedback' && <Feedback session={session} />}
+							{subView === 'Chat' && <Chat session={session} />}
 						</SubLayout>
 					</div>
 				)}
@@ -96,7 +98,7 @@ const Layout = ({ children, view, subView, session, updateSession, logout }) => 
 			</aside>
 
 			{/* ANNOTATIONS */}
-			<Annotations session={session} device={device} />
+			<Annotations session={session} device={device} updateData={updateData} />
 		</div>
 	);
 };

@@ -25,13 +25,13 @@
 	padding: 10px;
 	font-size: 0.9rem;
 	display: none;
-	width: 180px;
+	width: 200px;
 	border-radius: 5px;
 }
 
 .Rutes .annotation_details p {
-	margin: 10px 0;
-	padding: 10px 0;
+	margin: 8px 0;
+	padding: 8px 0;
 	border-top: var(--border);
 	border-bottom: var(--border);
 }
@@ -39,9 +39,22 @@
 .Rutes .annotation_details span {
 	font-weight: bold;
 	color: var(--lightText);
-	font-size: 0.83rem;
+	font-size: 0.8rem;
 }
 
 .Rutes .Annotation:hover .annotation_details {
 	display: block;
+}
+
+
+.Rutes .Annotation .topSection {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.Rutes .cancel {
+	font-weight: bold;
+	font-size: 1.3rem;
+	color: var(--primaryColor);
 }

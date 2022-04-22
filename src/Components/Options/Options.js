@@ -8,7 +8,9 @@ const Options = () => {
 	const { setSubView } = useViewAndSession();
 	return (
 		<div className='Options'>
-			<Option icon={<IcChat />}>Chat</Option>
+			<Option onClick={() => setSubView('Chat')} icon={<IcChat />}>
+				Chat
+			</Option>
 			<Option onClick={() => setSubView('Feedback')} icon={<IcFeedback />}>
 				Feedback
 			</Option>

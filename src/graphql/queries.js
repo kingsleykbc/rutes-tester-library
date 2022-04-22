@@ -8,7 +8,10 @@ const queryFilters = `
 	project {
 		title
 		description
-		screenshots
+		screenshots {
+			device
+			route
+		}
 		tests {
 			route
 			fullRoute
@@ -30,6 +33,8 @@ const queryFilters = `
 	response {
 		annotations {
 			id
+			route
+			device
 			element {
 				tag
 			}
@@ -38,6 +43,7 @@ const queryFilters = `
 				mouseX
 				mouseY
 			}
+			createdAt
 		}
 		feedback {
 			id
@@ -96,6 +102,22 @@ export const updateCompletedTests = gql`
 export const updateQuestionnaireResponse = gql`
 	mutation ($id: ID!, $type: String!, $answers: [QuestionnaireResponseData]!) {
 		updateQuestionnaireResponse(id: $id, type: $type, answers: $answers) {
+			${queryFilters}
+		}
+	}
+`;
+
+export const updateProjectScreenshot = gql`
+	mutation ($projectKey: String!, $screenshot: ScreenshotData!) {
+		updateProjectScreenshot(projectKey: $projectKey, screenshot: $screenshot) {
+			id
+		}
+	}
+`;
+
+export const updateAnnotations = gql`
+	mutation ($id: ID!, $annotationID: ID, $annotationData: AnnotationData) {
+		updateAnnotations(id: $id, annotationID: $annotationID, annotationData: $annotationData) {
 			${queryFilters}
 		}
 	}

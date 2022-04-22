@@ -13,9 +13,9 @@ function App() {
 			<div className='Rutes'>
 				<ViewAndSessionContextProvider>
 					<ViewAndSessionContext.Consumer>
-						{({ view, session, subView, updateSession, dataReady, error, login, logout }) =>
+						{({ view, session, subView, updateSession, updateData, dataReady, error, login, logout }) =>
 							session ? (
-								<Layout view={view} subView={subView} session={session} updateSession={updateSession} logout={logout}>
+								<Layout view={view} subView={subView} session={session} updateData={updateData} logout={logout}>
 									{view === 'tests' && <Tests />}
 									{view === 'pre-questionnaire' && <Questionnaire type='Pre' />}
 									{view === 'post-questionnaire' && <Questionnaire type='Post' />}

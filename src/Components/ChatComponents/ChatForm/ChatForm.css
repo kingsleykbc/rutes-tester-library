@@ -1,0 +1,32 @@
+.rutes-chatForm {
+	margin: 10px 0 3px 0;
+	padding: 0 !important;
+	display: flex;
+}
+
+.rutes-chatForm input {
+	flex-grow: 1;
+	border: none;
+	outline: none;
+}
+
+.rutes-chatForm .sendButton {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 40px;
+	height: 40px;
+	border: none;
+	padding: 0;
+	margin: 5px;
+	border-radius: 5px;
+	background: var(--highlightColor);
+	color: var(--primaryColor);
+	cursor: pointer;
+	transition: all linear 0.12s;
+}
+
+.rutes-chatForm .sendButton:hover {
+	background: var(--primaryColor);
+	color: #fff;
+}

@@ -62,7 +62,11 @@ const Menu = ({ xpos, ypos, device, session, updateData, toggleMenu, e, mouseX, 
 	 * TAKE AND STORE SCREENSHOT
 	 */
 	const takeAndStoreScreenShot = async () => {
-		// Capture entire page to canvas
+		/**
+		 * CAPTURE ENTIRE PAGE AS HTML CANVAS
+		 *
+		 * @reference (Library) html2canvas (v1.4.1), Hertzen N. (2022), http://html2canvas.hertzen.com/
+		 */
 		const canvas = await html2canvas(document.querySelector('body'));
 		canvas.toBlob(async blob => {
 			// Store in firebase

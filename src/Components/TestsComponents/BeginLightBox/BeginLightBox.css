@@ -1,0 +1,13 @@
+.Rutes .BeginLightBox .box {
+	max-width: 400px;
+	max-height: 100%;
+	height: auto;
+	text-align: center;
+	padding: 30px 20px;
+}
+
+.Rutes .BeginLightBox p {
+	margin: 20px auto;
+	color: var(--lightText);
+  font-size: 0.95rem;
+}

@@ -4,7 +4,7 @@ import Options from '../Options/Options';
 import './Layout.css';
 import { AiOutlineMenuFold as IcHide } from 'react-icons/ai';
 import { AiOutlineMenuUnfold as IcShow } from 'react-icons/ai';
-import AllTests from '../TestsComponents/AllTests/AllTests/AllTests';
+import AllTests from '../TestsComponents/AllTests/AllTests';
 import SubLayout from '../SubLayout/SubLayout';
 import Feedback from '../Feedback/Feedback';
 import Menu from '../Menu/Menu';
@@ -15,6 +15,9 @@ import { DEVICE_SCREENS } from '../../lib/config';
 import Annotations from '../Annotations/Annotations';
 import Chat from '../Chat/Chat';
 
+/**
+ * MAIN COMPONENT
+ */
 const Layout = ({ children, view, subView, session, updateData, logout }) => {
 	const [show, setShow] = useState(true);
 	const [device, setDevice] = useState('loading..');
@@ -37,8 +40,8 @@ const Layout = ({ children, view, subView, session, updateData, logout }) => {
 
 				// If it matches resolution
 				if (
-					parseInt(width) >= deviceWidth - 50 &&
-					parseInt(width) <= deviceWidth + 50 /* && (height >= deviceHeight - 200 && height <= deviceHeight + 200)*/
+					parseInt(width) >= deviceWidth - 25 &&
+					parseInt(width) <= deviceWidth + 25 /* && (height >= deviceHeight - 200 && height <= deviceHeight + 200)*/
 				) {
 					return dev;
 				}
@@ -54,6 +57,7 @@ const Layout = ({ children, view, subView, session, updateData, logout }) => {
 	// ===================================================================================================================
 	return (
 		<div className='Layout'>
+
 			{/* ANNOTATION MENU */}
 			{showMenu && (
 				<Menu
@@ -84,6 +88,7 @@ const Layout = ({ children, view, subView, session, updateData, logout }) => {
 				{subView && (
 					<div id='sub-layout-content'>
 						<SubLayout title={subView}>
+							
 							{/* SET THE SUB VIEW */}
 							{subView === 'All tests' && <AllTests session={session} />}
 							{subView === 'Feedback' && <Feedback session={session} />}

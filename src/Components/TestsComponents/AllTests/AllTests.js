@@ -1,6 +1,6 @@
 import React from 'react';
 import './AllTests.css';
-import Expandable from '../../../UIComponents/Expandable/Expandable';
+import Expandable from '../../UIComponents/Expandable/Expandable';
 import { ImCheckboxUnchecked as IcUnchecked } from 'react-icons/im';
 import { BsCheck2Square as IcChecked } from 'react-icons/bs';
 
@@ -10,7 +10,6 @@ const AllTests = ({
 		response
 	}
 }) => {
-
 	// ===================================================================================================================
 	//  UI
 	// ===================================================================================================================
@@ -20,7 +19,7 @@ const AllTests = ({
 				<Expandable
 					defaultOpen={true}
 					heading={
-						<Heading done={response.preQuestionnaireResponse} isBold>
+						<Heading done={response.preQuestionnaireResponse && response.preQuestionnaireResponse.length > 0} isBold>
 							Pre-session questionnaire
 						</Heading>
 					}
@@ -45,7 +44,7 @@ const AllTests = ({
 				<Expandable
 					defaultOpen={true}
 					heading={
-						<Heading done={response.postQuestionnaireResponse} isBold>
+						<Heading done={response.postQuestionnaireResponse && response.postQuestionnaireResponse.length > 0} isBold>
 							Post-session questionnaire
 						</Heading>
 					}

@@ -31,8 +31,14 @@ const ChatForm = ({ session: { id, testerEmail } }) => {
 	const sendMessage = async e => {
 		e.preventDefault();
 
-		// Send message
-		await addDoc(collection(db, 'rutes-message'), { createdAt: new Date(), message, sender: testerEmail, sessionID: id });
+		// Send message and update session
+		const newMessage = await addDoc(collection(db, 'rutes-message'), {
+			createdAt: new Date(),
+			message,
+			sender: testerEmail,
+			sessionID: id
+		});
+		updateDoc(doc(db, 'rutes-session', id), { lastUpdated: new Date(), lastMessage: newMessage.id });
 
 		// Reset form
 		setMessage('');

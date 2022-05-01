@@ -84,7 +84,7 @@ export const updateSessionAction = gql`
 `;
 
 export const updateSessionFeedback = gql`
-	mutation ($id: ID!, $feedbackID: ID) {
+	mutation ($id: ID!, $feedbackID: ID, $feedbackData: FeedbackData) {
 		updateSessionFeedback(id: $id, feedbackID: $feedbackID, feedbackData: $feedbackData) {
 			${queryFilters}
 		}
@@ -107,10 +107,10 @@ export const updateQuestionnaireResponse = gql`
 	}
 `;
 
-export const updateProjectScreenshot = gql`
-	mutation ($projectKey: String!, $screenshot: ScreenshotData!) {
-		updateProjectScreenshot(projectKey: $projectKey, screenshot: $screenshot) {
-			id
+export const updateProjectScreenshotFromSession = gql`
+	mutation ($id: ID!, $screenshot: ScreenshotData!) {
+		updateProjectScreenshotFromSession(id: $id, screenshot: $screenshot) {
+			${queryFilters}
 		}
 	}
 `;
@@ -121,4 +121,12 @@ export const updateAnnotations = gql`
 			${queryFilters}
 		}
 	}
+`;
+
+export const updateRecordings = gql`
+	mutation($id: ID!, $recording: RecordingData!) {
+  updateRecordings(id: $id, recording: $recording) {
+			${queryFilters}
+  }
+}
 `;

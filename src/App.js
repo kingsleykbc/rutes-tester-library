@@ -7,13 +7,17 @@ import { ApolloProvider } from '@apollo/client';
 import AuthBox from './Components/AuthBox/AuthBox';
 import Completed from './Components/Completed/Completed';
 
+/**
+ * MAIN APP
+ */
 function App() {
 	return (
 		<ApolloProvider client={apolloClient}>
 			<div className='Rutes'>
 				<ViewAndSessionContextProvider>
 					<ViewAndSessionContext.Consumer>
-						{({ view, session, subView, updateSession, updateData, dataReady, error, login, logout }) =>
+						{/* GLOBAL STATES (REACT CONTEXT VALUES) */}
+						{({ view, session, subView, updateData, dataReady, error, login, logout }) =>
 							session ? (
 								<Layout view={view} subView={subView} session={session} updateData={updateData} logout={logout}>
 									{view === 'tests' && <Tests />}
@@ -26,8 +30,8 @@ function App() {
 							)
 						}
 					</ViewAndSessionContext.Consumer>
-					<div id='portal'></div>
 				</ViewAndSessionContextProvider>
+				<div id='portal'></div>
 			</div>
 		</ApolloProvider>
 	);

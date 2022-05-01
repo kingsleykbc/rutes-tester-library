@@ -5,7 +5,8 @@
 }
 .rutes-chat-messages {
 	flex-grow: 1;
-	overflow: overlay;
+	overflow-x: auto;
+	overflow-y: overlay;
 }
 
 /* OVERWRITE SCROLL BAR HERE */
@@ -18,6 +19,6 @@
 }
 
 .rutes-chat-messages::-webkit-scrollbar-thumb {
-  background: rgba(0, 0, 0, 0.118); 
-  border-radius: 10px;
+	background: rgba(0, 0, 0, 0.118);
+	border-radius: 10px;
 }

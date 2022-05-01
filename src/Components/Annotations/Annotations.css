@@ -30,7 +30,7 @@
 }
 
 .Rutes .annotation_details p {
-	margin: 8px 0;
+	margin: 5px 0;
 	padding: 8px 0;
 	border-top: var(--border);
 	border-bottom: var(--border);
@@ -56,5 +56,6 @@
 .Rutes .cancel {
 	font-weight: bold;
 	font-size: 1.3rem;
+	margin-top: -3px;
 	color: var(--primaryColor);
 }

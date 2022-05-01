@@ -6,7 +6,7 @@
 	right: 0;
 	background: transparent;
 	display: block;
-	z-index: 2000;
+	z-index: 20000;
 }
 
 .Lightbox.hide {

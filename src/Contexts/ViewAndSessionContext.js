@@ -5,8 +5,9 @@ import {
 	getSessionQuery,
 	updateAnnotations,
 	updateCompletedTests,
-	updateProjectScreenshot,
+	updateProjectScreenshotFromSession,
 	updateQuestionnaireResponse,
+	updateRecordings,
 	updateSessionAction,
 	updateSessionFeedback
 } from '../graphql/queries';
@@ -138,8 +139,16 @@ class ViewAndSessionContextProvider extends Component {
 				// Add screenshot
 				case 'ADD_SCREENSHOT':
 					update = await apolloClient.mutate({
-						mutation: updateProjectScreenshot,
-						variables: { projectKey, screenshot: data }
+						mutation: updateProjectScreenshotFromSession,
+						variables: { id, screenshot: data }
+					});
+					break;
+
+				// Add recording
+				case 'ADD_RECORDING':
+					update = await apolloClient.mutate({
+						mutation: updateRecordings,
+						variables: { id, recording: data }
 					});
 					break;
 
@@ -150,6 +159,7 @@ class ViewAndSessionContextProvider extends Component {
 						variables: { id, annotationData: data }
 					});
 					break;
+
 				// Delete feedback
 				case 'ANNOTATION_DELETE':
 					update = await apolloClient.mutate({
@@ -157,6 +167,7 @@ class ViewAndSessionContextProvider extends Component {
 						variables: { id, annotationID: data }
 					});
 					break;
+
 				// Update other things
 				default:
 					delete data.__typename;
@@ -167,7 +178,7 @@ class ViewAndSessionContextProvider extends Component {
 			}
 
 			// Refresh state
-			await this.getData(type === 'ADD_SCREENSHOT' ? null : update.data.session);
+			await this.getData(update.data.session);
 		} catch (e) {
 			console.log(e.networkError.result.errors);
 			throw e.message;
@@ -182,7 +193,6 @@ class ViewAndSessionContextProvider extends Component {
 		Cookie.set('rutes-tester-library-testerEmail', testerEmail, { expires: 30 });
 		const session = await this.getData();
 		if (session.error) {
-			console.log(session.error);
 			throw session.error;
 		}
 	}

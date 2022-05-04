@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 
-// Hook
+/**
+ * GET WINDOW WIDTH AND HEIGHT
+ */
 export default function useWindowSize() {
 	const [windowSize, setWindowSize] = useState({
 		width: '100vh',
@@ -8,7 +10,6 @@ export default function useWindowSize() {
 	});
 
 	useEffect(() => {
-		// only execute all the code below in client side
 		// Handler to call on window resize
 		function handleResize() {
 			// Set window width/height to state

@@ -37,6 +37,7 @@ const AddFeedback = ({ updateData }) => {
 	// ===================================================================================================================
 	return (
 		<form className='AddFeedback' onSubmit={postFeedback}>
+			
 			{/* FEEDBACK TYPE */}
 			<select value={type} onChange={e => setType(e.target.value)} required>
 				<option value='' disabled>

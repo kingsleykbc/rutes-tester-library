@@ -2,10 +2,12 @@ import Layout from './Components/Layout/Layout';
 import Questionnaire from './Components/Questionnaire/Questionnaire';
 import Tests from './Components/Tests/Tests';
 import ViewAndSessionContextProvider, { ViewAndSessionContext } from './Contexts/ViewAndSessionContext';
-import apolloClient from './lib/apollo';
-import { ApolloProvider } from '@apollo/client';
 import AuthBox from './Components/AuthBox/AuthBox';
 import Completed from './Components/Completed/Completed';
+
+// Setup up Apollo client (frontend graphQL client )
+import apolloClient from './lib/apollo';
+import { ApolloProvider } from '@apollo/client';
 
 /**
  * MAIN APP

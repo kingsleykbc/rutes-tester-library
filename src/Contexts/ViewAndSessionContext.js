@@ -1,4 +1,3 @@
-import Cookie from 'js-cookie';
 import React, { Component, createContext, useContext } from 'react';
 import apolloClient from '../lib/apollo';
 import {
@@ -11,6 +10,13 @@ import {
 	updateSessionAction,
 	updateSessionFeedback
 } from '../graphql/queries';
+
+/**
+ * IMPORT JS-COOKIE
+ * 
+ * @reference (package) js-cookie (2022), v3.0.1, https://github.com/js-cookie/js-cookie 
+ */
+import Cookie from 'js-cookie';
 
 /**
  * SETUP CONTEXT
@@ -102,6 +108,7 @@ class ViewAndSessionContextProvider extends Component {
 			let update;
 			const { id, projectKey } = this.state.session;
 
+			// Run the mutation for the update type
 			switch (type) {
 				// Update feedback
 				case 'FEEDBACK':

@@ -4,6 +4,9 @@ import { BsChatRight as IcChat } from 'react-icons/bs';
 import { BsReplyAllFill as IcFeedback } from 'react-icons/bs';
 import { useViewAndSession } from '../../Contexts/ViewAndSessionContext';
 
+/**
+ * MENU ITEMS
+ */
 const Options = () => {
 	const { setSubView } = useViewAndSession();
 	return (

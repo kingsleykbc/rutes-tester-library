@@ -1,5 +1,4 @@
-// Import the functions you need from the SDKs you need
-
+// Use firebase (rename to firebase.js)
 import { initializeApp } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore';
 import { getStorage } from 'firebase/storage';

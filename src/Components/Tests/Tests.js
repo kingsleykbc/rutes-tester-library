@@ -97,7 +97,7 @@ const Tests = () => {
 	return (
 		<div className='Tests'>
 			<div className='topSection'>
-				<h4 onClick={() => setIsComplete(true)}>Test</h4> {status}
+				<h4>Test</h4>
 				<div className='textButton' onClick={() => setSubView('All tests')}>
 					All steps
 				</div>

@@ -2,6 +2,7 @@
 	height: 100%;
 	display: flex;
 	flex-direction: column;
+	position: relative;
 }
 .rutes-chat-messages {
 	flex-grow: 1;
@@ -21,4 +22,19 @@
 .rutes-chat-messages::-webkit-scrollbar-thumb {
 	background: rgba(0, 0, 0, 0.118);
 	border-radius: 10px;
+}
+
+.rutes-isTyping {
+	position: absolute;
+	top: 0;
+	left: 50%;
+	transform: translateX(-50%);
+	display: block;
+	padding: 8px 15px;
+	text-align: center;
+	font-size: 0.95rem;
+	color: #fff;
+	background: rgba(32, 24, 55, 0.404);
+	border-radius: 5px;
+	z-index: 2000;
 }

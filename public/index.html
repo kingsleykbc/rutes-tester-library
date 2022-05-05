@@ -7,6 +7,7 @@
 		<meta name="theme-color" content="#000000" />
 		<meta name="description" content="Web site created using create-react-app" />
 		<link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+		<link rel="stylesheet" href="style.css" />
 		<!--
       manifest.json provides metadata used when your web app is installed on a
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
@@ -25,43 +26,50 @@
 	</head>
 	<body>
 		<noscript>You need to enable JavaScript to run this app.</noscript>
-		<h1 style="padding: 30px" class="Main greeting">
-			SAMPLE PAGE WHERE THINGS HAPPEN ON THE WEBSITE WRITTEN HERE IN BOLD Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nam sit
-			asperiores facilis quam omnis, ex eos nobis dolorum, enim labore distinctio reiciendis recusandae, a at. Beatae totam omnis dolore
-			ipsum.
-		</h1>
 
-		<div style="text-align: right">
-			<button>DATA</button>
-		</div>
+		<header>
+			<a href="./index.html"><h3>TEST SITE</h3></a>
+			<nav>
+				<a class="active" href="./index.html">HOME</a>
+				<!-- <a href="./about.html">ABOUT</a>
+				<a href="./contact.html">CONTACT</a> -->
+			</nav>
+		</header>
 
-		<div style="text-align: right; background-color: green">
-			<h2 style="margin-bottom: 20px; background-color: yellow">Some Extran stuff</h2>
-			<h2 style="margin-bottom: 20px; background-color: yellow">Some Extran stuff</h2>
-			<h2 style="margin-bottom: 20px; background-color: yellow">Some Extran stuff</h2>
-			<h2 style="margin-bottom: 20px; background-color: yellow">Some Extran stuff</h2>
-			<h2 style="margin-bottom: 20px; background-color: yellow">Some Extran stuff</h2>
-			<h2 style="margin-bottom: 20px; background-color: yellow">Some Extran stuff</h2>
-			<h2 style="margin-bottom: 20px; background-color: yellow">Some Extran stuff</h2>
-			<h2 style="margin-bottom: 20px; background-color: yellow">Some Extran stuff</h2>
-			<h2 style="margin-bottom: 20px; background-color: yellow">Some Extran stuff</h2>
-			<h2 style="margin-bottom: 20px; background-color: yellow">Some Extran stuff</h2>
-			<h2 style="margin-bottom: 20px; background-color: yellow">Some Extran stuff</h2>
-		</div>
+		<main class="index">
+			<div class="heroText">
+				<h1>Welcome to the test site</h1>
+				<p>
+					Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo fugiat a magnam expedita dignissimos, nobis officiis voluptas
+					fugit doloremque! Commodi sequi delectus ducimus inventore quibusdam harum, corporis est exercitationem ex.
+				</p>
+			</div>
+
+			<img src="https://picsum.photos/800/300" alt="Hero image" />
+
+			<div class="sections">
+				<section>
+					<p>
+						Lorem ipsum dolor sit amet consectetur adipisicing elit. A nostrum temporibus itaque sed, est provident aliquam dolorum? Ipsa,
+						sequi quod doloremque nesciunt a aut corrupti inventore. In quasi nostrum vitae.
+					</p>
+					<button>More</button>
+				</section>
+
+				<section>
+					<p>
+						Lorem ipsum dolor sit amet consectetur adipisicing elit. A nostrum temporibus itaque sed, est provident aliquam dolorum? Ipsa,
+						sequi quod doloremque nesciunt a aut corrupti inventore. In quasi nostrum vitae.
+					</p>
+					<button>More</button>
+				</section>
+			</div>
+			<footer>Footer content &copy;2022</footer>
+		</main>
 
 		<div id="root"></div>
 		<script>
-			window.rutes_project_key = 'Q2GGAPZJNS';
+			window.rutes_project_key = 'VDSRAZHNDF';
 		</script>
-		<!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
-
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
-
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
 	</body>
 </html>

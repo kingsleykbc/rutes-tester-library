@@ -8,6 +8,7 @@ import BeginLightBox from '../TestsComponents/BeginLightBox/BeginLightBox';
 import { storage } from '../../lib/firebase';
 
 const Tests = () => {
+	// Get context state
 	const {
 		setSubView,
 		updateData,
@@ -30,28 +31,50 @@ const Tests = () => {
 
 	// States
 	const [loading, setLoading] = useState(false);
-	const [hasRecording, setHasRecording] = useState(false);
-	const [isComplete, setisComplete] = useState(false);
+	const [isComplete, setIsComplete] = useState(false);
+	const [recordingBlob, setRecordingBlob] = useState(null);
 	const [showLB, setShowLB] = useState(!isDone);
 	const toggleLB = () => setShowLB(!showLB);
+
+	/**
+	 * SAVE THE RECORDING TO DATABASE
+	 */
+	const saveRecording = async () => {
+		// Store in firebase
+		const storageRef = ref(storage, `recordings/r_${testerEmail}_${projectKey}_${new Date().getTime()}.wav`);
+		await uploadBytes(storageRef, recordingBlob);
+		const recording = await getDownloadURL(storageRef);
+
+		// Store in database
+		await updateData('ADD_RECORDING', { route: test.route, recording });
+	};
 
 	/**
 	 * RECORD SCREEN
 	 *
 	 * @reference (Package) react-media-recorder, thousand-petalled (2021), https://github.com/0x006F/react-media-recorder
 	 */
-	const { status, startRecording, stopRecording, mediaBlobUrl } = useReactMediaRecorder({ screen: true });
+	const { status, startRecording, stopRecording } = useReactMediaRecorder({
+		screen: true,
+		onStop: (blobURL, blob) => setRecordingBlob(blob)
+	});
 
+	/**
+	 * STOP RECORDING WHEN MARKED AS COMPLETE
+	 */
 	useEffect(() => {
-		// Specify whether the this session has screen recording
-		if (status === 'recording' && !hasRecording) setHasRecording(true);
-		// Show error if recording is cancelled before marking session as complete
-		else if (status === 'stopped' && !isComplete) alert("Recording cancelled, please reload the page or recording won't be saved.");
-		// If mark as done button is just clicked
-		else if (isComplete && status === 'recording') stopRecording();
-		// If complete and recording has been captured
-		else if (isComplete && (!hasRecording || (hasRecording && mediaBlobUrl))) completeTest();
-	}, [status, mediaBlobUrl, isComplete]);
+		if (isComplete) stopRecording();
+	}, [isComplete]);
+
+	/**
+	 * WHEN THE RECORDING IS COMPLETE, SAVE IT OR SHOW ERROR IF IT WAS CANCELLED
+	 */
+	useEffect(() => {
+		if (recordingBlob) {
+			if (!isComplete) alert("Recording cancelled, please reload the page or recording won't be saved.");
+			else saveRecording();
+		}
+	}, [recordingBlob]);
 
 	/**
 	 * MARK TEST AS COMPLETE
@@ -59,9 +82,7 @@ const Tests = () => {
 	const completeTest = async () => {
 		try {
 			setLoading(true);
-			console.log(mediaBlobUrl);
-
-			if (mediaBlobUrl) await saveRecording();
+			setIsComplete(true);
 
 			// Update database
 			await updateData('ADD_COMPLETED_TEST', test.route);
@@ -70,27 +91,13 @@ const Tests = () => {
 		}
 	};
 
-	/**
-	 * SAVE RECORDING TO FIREBASE STORAGE
-	 */
-	const saveRecording = async () => {
-		// Store in firebase
-		const blob = await fetch(mediaBlobUrl).then(r => r.blob());
-		const storageRef = ref(storage, `recordings/r_${testerEmail}_${projectKey}_${new Date().getTime()}.wav`);
-		await uploadBytes(storageRef, blob);
-		const recording = await getDownloadURL(storageRef);
-
-		// Store in database
-		await updateData('ADD_RECORDING', { route: test.route, recording });
-	};
-
 	// ===================================================================================================================
 	//  UI
 	// ===================================================================================================================
 	return (
 		<div className='Tests'>
 			<div className='topSection'>
-				<h4>Test</h4>
+				<h4 onClick={() => setIsComplete(true)}>Test</h4> {status}
 				<div className='textButton' onClick={() => setSubView('All tests')}>
 					All steps
 				</div>
@@ -110,7 +117,7 @@ const Tests = () => {
 							</a>
 						)}
 						{!isDone ? (
-							<button disabled={loading} className='filled' onClick={() => setisComplete(true)}>
+							<button disabled={loading} className='filled' onClick={completeTest}>
 								{loading ? 'Saving...' : 'Mark as done'}
 							</button>
 						) : (

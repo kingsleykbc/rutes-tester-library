@@ -1,5 +1,5 @@
 // SERVER URI
-export const SERVER_URI = 'http://localhost:8080/graphql';
+export const SERVER_URI = 'https://rutes-server.herokuapp.com/graphql';
 
 /**
  * SCREEN CONFIGURATIONS

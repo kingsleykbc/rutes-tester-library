@@ -3,7 +3,7 @@
 
 A react-based JavaScript library for the RUTES project. This library includes tools for annotating UI elements, chatting with project admins, posting feedback (feaute requests, notes, and error reports), and completing pre-defined tests.
 
-Download the minified library [here](replace-later.com).
+Download the minified library (bundle.min.js) above.
 
 
 ## Tools used

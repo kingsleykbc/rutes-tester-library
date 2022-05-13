@@ -144,3 +144,8 @@
 .Rutes .aCenter {
 	text-align: center;
 }
+
+.Rutes textarea {
+	height: auto;
+	min-height: 0;
+}

@@ -1,5 +1,8 @@
 .rutes-Message {
 	padding: 5px 0;
+	display: flex;
+	gap: 10px;
+	align-items: center;
 }
 
 .rutes-Message-messageContent {
@@ -32,7 +35,7 @@
 }
 
 .rutes-Message.fromSelf {
-	text-align: right;
+	justify-content: right;
 }
 
 .fromSelf .rutes-Message-messageContent {
@@ -42,7 +45,30 @@
 	border-bottom-left-radius: 7px;
 }
 
-
 .fromSelf .rutes-Message-messageContent span {
-  color: rgba(255, 255, 255, 0.595);
+	color: rgba(255, 255, 255, 0.595);
+}
+
+.rutes-delIcon {
+	width: 37px;
+	height: 37px;
+	border-radius: 50%;
+	border: 1px solid rgba(0, 0, 0, 0.2);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+	font-size: 1.2rem;
+}
+
+.rutes-delIcon:hover {
+	background: rgba(0, 0, 0, 0.2);
+}
+
+.rutes-message-deletedMessage {
+	border: 2px dashed #a9a9a9;
+	padding: 8px 10px;
+	color: var(--lightText);
+	border-radius: 5px;
+
 }

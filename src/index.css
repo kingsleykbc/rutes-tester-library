@@ -8,6 +8,45 @@
 	--lightText: #747474;
 }
 
+/* 
+ Applying the below rules to 'Rutes *' and adding !important to styles would fix all overriding errors. Unfortunately,
+ given the small scope of the project this wasn't done as it would require more CSS general (due to lack of parent
+ inheritance and having to add !important to many rules).
+*/
+.rutes-defaults {
+	background: none;
+	border: none;
+	bottom: auto;
+	clear: none;
+	cursor: default;
+	box-shadow: none;
+	float: none;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: medium;
+	font-style: normal;
+	font-weight: normal;
+	height: auto;
+	left: auto;
+	letter-spacing: normal;
+	line-height: normal;
+	max-height: none;
+	max-width: none;
+	min-height: 0;
+	min-width: 0;
+	overflow: visible;
+	position: static;
+	right: auto;
+	text-align: left;
+	text-decoration: none;
+	text-indent: 0;
+	text-transform: none;
+	top: auto;
+	visibility: visible;
+	white-space: normal;
+	width: auto;
+	z-index: auto;
+}
+
 .Rutes * {
 	padding: 0;
 	margin: 0;
@@ -33,6 +72,7 @@
 .Rutes input,
 .Rutes select,
 .Rutes textarea {
+	width: auto;
 	display: block;
 	border: 2px solid #d8d8d8;
 	background: none;
@@ -148,4 +188,8 @@
 .Rutes textarea {
 	height: auto;
 	min-height: 0;
+}
+
+.Rutes p {
+	line-height: normal;
 }

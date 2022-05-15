@@ -99,7 +99,7 @@ const Menu = ({ xpos, ypos, device, session, updateData, toggleMenu, e, mouseX, 
 			<div className='AnnotationMenu_target'>
 				<b>{e.target.tagName}</b> element
 			</div>
-			<form onSubmit={addAnnotation} id='AnnotationMenu_form'>
+			<form className='rutes-defaults' onSubmit={addAnnotation} id='AnnotationMenu_form'>
 				<div className='textareaSection'>
 					<textarea
 						id='AnnotationMenu_input'

@@ -50,7 +50,7 @@ const ChatForm = ({ session: { id, testerEmail } }) => {
 	return (
 		<form onSubmit={sendMessage} className='rutes-chatForm whiteboard'>
 			<input type='text' value={message} onChange={e => setMessage(e.target.value)} placeholder='Enter message...' required />
-			<button className='sendButton'>
+			<button className='rutes-defaults sendButton'>
 				<IcSend size='1.5rem' />
 			</button>
 		</form>

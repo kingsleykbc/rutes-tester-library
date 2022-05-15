@@ -8,6 +8,7 @@
 	flex-grow: 1;
 	overflow: auto;
 	padding: 20px;
+	padding-top: 5px;
 }
 
 .questions-title {
@@ -58,4 +59,8 @@
   border-radius: 5px;
   gap: 10px;
   cursor: pointer;
+}
+
+.question-multichoiceOptions label p {
+	margin-top: -5px;
 }

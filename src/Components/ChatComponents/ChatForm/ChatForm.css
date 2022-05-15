@@ -6,6 +6,7 @@
 
 .rutes-chatForm input {
 	flex-grow: 1;
+	width: auto;
 	border: none;
 	outline: none;
 }

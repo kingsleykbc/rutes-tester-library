@@ -53,7 +53,7 @@ const Questions = ({ type, toggle }) => {
 		<div className='Questions'>
 			<div className='questions-title'>{`${type}-questionnaire`.toUpperCase()}</div>
 			<div className='questions-content'>
-				<form onSubmit={submitQuestionnaire}>
+				<form className='rutes-defaults' onSubmit={submitQuestionnaire}>
 					{questions.map(item => {
 						// Find the answer in the response object and add it
 						const answerIndex = answers.findIndex(val => val.questionID === item.id);

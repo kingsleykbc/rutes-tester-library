@@ -43,3 +43,13 @@
 		opacity: 0.6;
 	}
 }
+
+.rutes_tests_warningMessage {
+	display: block;
+	border-top: var(--border);
+	color: var(--lightText);
+	text-align: center;
+	font-size: 0.85rem;
+	margin-top: 15px;
+	padding-top: 15px;
+}

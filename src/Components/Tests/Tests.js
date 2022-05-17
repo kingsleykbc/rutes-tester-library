@@ -77,6 +77,20 @@ const Tests = () => {
 	}, [recordingBlob]);
 
 	/**
+	 * SHOW A WARNING IF THE PAGE IS BEING UNLOADED BEFORE MARKING AS COMPLETE
+	 */
+	useEffect(() => {
+		const onUnload = e => {
+			if (!isComplete) {
+				e.preventDefault();
+				(e || window.event).returnValue = 'Hello hello';
+			}
+		};
+		window.addEventListener('beforeunload', onUnload);
+		return () => window.removeEventListener('beforeunload', onUnload);
+	}, []);
+
+	/**
 	 * MARK TEST AS COMPLETE
 	 */
 	const completeTest = async () => {
@@ -129,6 +143,8 @@ const Tests = () => {
 							</a>
 						)}
 					</div>
+
+					{!isDone && <span className='rutes_tests_warningMessage'>Please mark as done before leaving page. {status !== "recording" && <b>Not recording!</b>}</span>}
 
 					{/* RECORDING ICON */}
 					{status === 'recording' && (

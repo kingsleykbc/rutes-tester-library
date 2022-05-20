@@ -1,10 +1,13 @@
+/**
+ * @Reference (code) Lukas Liesis. Stack overflow. https://stackoverflow.com/a/58520848/4083636
+ */
 const path = require('path');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const glob = require('glob');
 
 /**
  * CONFIGURE WEBPACK BUNDLE
- * 
+ *
  * The code below is intended to override the default bundle structure of the react generator library used.
  * Running this code will bundle the entire project into a single JS file, rather than multiple files.
  */

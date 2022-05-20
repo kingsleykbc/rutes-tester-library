@@ -21,7 +21,7 @@ const Tests = () => {
 	} = useViewAndSession();
 
 	// Get the current and next route
-	const routeIndex = tests.findIndex(item => item.route === window.location.pathname);
+	const routeIndex = tests.findIndex(item => item.route === '/' + window.location.pathname.split('/').pop());
 	const test = tests[routeIndex];
 	const previousTest = tests[routeIndex - 1];
 	const nextTest = tests[routeIndex + 1];
@@ -81,7 +81,7 @@ const Tests = () => {
 	 */
 	useEffect(() => {
 		const onUnload = e => {
-			if (!isComplete) {
+			if (!isComplete && test?.instructions?.length > 0) {
 				e.preventDefault();
 				(e || window.event).returnValue = 'Hello hello';
 			}
@@ -144,7 +144,11 @@ const Tests = () => {
 						)}
 					</div>
 
-					{!isDone && <span className='rutes_tests_warningMessage'>Please mark as done before leaving page. {status !== "recording" && <b>Not recording!</b>}</span>}
+					{!isDone && (
+						<span className='rutes_tests_warningMessage'>
+							Please mark as done before leaving page. {status !== 'recording' && <b>Not recording!</b>}
+						</span>
+					)}
 
 					{/* RECORDING ICON */}
 					{status === 'recording' && (

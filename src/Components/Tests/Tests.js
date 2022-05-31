@@ -83,12 +83,12 @@ const Tests = () => {
 		const onUnload = e => {
 			if (!isComplete && test?.instructions?.length > 0) {
 				e.preventDefault();
-				(e || window.event).returnValue = 'Hello hello';
+				(e || window.event).returnValue = 'Changes unsaved';
 			}
 		};
 		window.addEventListener('beforeunload', onUnload);
 		return () => window.removeEventListener('beforeunload', onUnload);
-	}, []);
+	}, [isComplete]);
 
 	/**
 	 * MARK TEST AS COMPLETE

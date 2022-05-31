@@ -83,7 +83,7 @@ const Tests = () => {
 		const onUnload = e => {
 			if (!isComplete && test?.instructions?.length > 0) {
 				e.preventDefault();
-				(e || window.event).returnValue = 'Changes unsaved';
+				(e || window.event).returnValue = 'Changes not saved';
 			}
 		};
 		window.addEventListener('beforeunload', onUnload);
